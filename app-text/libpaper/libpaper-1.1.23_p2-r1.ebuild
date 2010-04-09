@@ -4,7 +4,7 @@
 
 EAPI="2"
 
-inherit eutils libtool
+inherit eutils autotools
 
 MY_PV=${PV/_p/+nmu}
 DESCRIPTION="Library for handling paper characteristics"
