@@ -19,7 +19,8 @@ IUSE=""
 S="${WORKDIR}/${PN}-${MY_PV}"
 
 src_prepare() {
-	elibtoolize
+	epatch "${FILESDIR}"/${P}-check-malloc.patch
+	eautoreconf
 }
 
 src_install() {
