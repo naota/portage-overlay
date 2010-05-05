@@ -28,6 +28,7 @@ src_unpack() {
 	unpack ${A}
 	cd "${S}"
 
+	epatch "${FILESDIR}"/${P}-closefrom.patch
 	if ! use zeroconf; then
 		elog "Disabling zeroconf support"
 		{

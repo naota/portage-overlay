@@ -1,0 +1,11 @@
+Index: configure
+===================================================================
+--- configure	(revision 7e0d9a4a38dcca34f9e54eafe2120b6d4719e554)
++++ configure	(revision 8b5e971093a6fd97762af1a96d655b80054b1531)
+@@ -257,5 +257,5 @@
+ #include <unistd.h>
+ int main(void) {
+-	int r = closefrom(3);
++	closefrom(3);
+ 	return 0;
+ }
