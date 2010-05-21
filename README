@@ -1,0 +1,9 @@
+自分で直した Gentoo の ebuild を設置。
+
+/etc/layman/layman.cfg の overlays のところに http://github.com/naota/portage-overlay/raw/master/repository.xml をこんな感じでに追加する
+
+overlays  : http://www.gentoo.org/proj/en/overlays/repositories.xml
+	  http://github.com/naota/portage-overlay/raw/master/repository.xml
+
+そして layman -a naota すれば使えるはず。
+
