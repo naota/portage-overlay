@@ -24,6 +24,8 @@ COMMON_DEP="dev-java/jgoodies-forms:0
 	>=dev-java/simplyhtml-0.13.1:0
 	dev-java/commons-lang:2.1
 	dev-java/javahelp:0
+	dev-java/jsr173
+	dev-java/sun-jaf
 	groovy? ( dev-java/groovy )
 	latex? ( dev-java/hoteqn:0 )
 	pdf? ( dev-java/batik:1.7
