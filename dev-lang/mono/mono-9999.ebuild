@@ -80,6 +80,7 @@ src_prepare() {
 		< "${FILESDIR}"/mono-2.2-libdir126.patch \
 		> "${WORKDIR}"/mono-2.2-libdir126.patch ||
 		die "Sedding patch file failed"
+	sed -i -e "7,19d" "${WORKDIR}"/mono-2.2-libdir126.patch || die
 	go-mono_src_prepare
 }
 
