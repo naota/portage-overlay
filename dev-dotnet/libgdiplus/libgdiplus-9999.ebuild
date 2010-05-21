@@ -38,6 +38,7 @@ RESTRICT="test"
 
 src_prepare() {
 	rm -rf cairo pixman
+	sed -i -e 's/pixman cairo//' Makefile.am
 	go-mono_src_prepare
 	sed -i -e 's:ungif:gif:g' configure || die
 }
