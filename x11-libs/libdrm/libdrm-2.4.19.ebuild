@@ -26,7 +26,8 @@ pkg_setup() {
 	CONFIGURE_OPTIONS="--enable-udev
 			--enable-nouveau-experimental-api
 			--enable-vmwgfx-experimental-api
-			$(use_enable !arm intel)
+			$(use_enable kernel_linux libkms)
+			$(! use amd64 && ! use x86 && ! use x86-fbsd && echo "--disable-intel")
 			$(use_enable !arm radeon)"
 }
 
