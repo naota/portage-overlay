@@ -1,0 +1,82 @@
+--- 230_all_MAX_ARG.patch.orig	2010-07-13 19:17:36.000000000 +0900
++++ 230_all_MAX_ARG.patch	2010-07-13 19:27:19.000000000 +0900
+@@ -6,7 +6,20 @@
+ 
+ --- netkit-rsh-0.17/rexecd/rexecd.c
+ +++ netkit-rsh-0.17/rexecd/rexecd.c
+-@@ -234,7 +234,8 @@
++@@ -103,6 +103,12 @@ char rcsid[] =
++ struct from_host from_host;
++ #endif
++ 
+++#ifndef _POSIX_ARG_MAX
+++# if defined(__FreeBSD__) || defined(__DragonFly__)
+++#  include <limits.h>
+++# endif
+++#endif
+++
++ int allow_severity = LOG_INFO;
++ int deny_severity = LOG_WARNING;
++ 
++@@ -234,7 +240,8 @@
+  static void
+  doit(struct sockaddr_in *fromp)
+  {
+@@ -16,7 +29,7 @@
+  	char user[16], pass[16];
+  	struct passwd *pwd;
+  	int s = -1;
+-@@ -253,6 +254,15 @@
++@@ -253,6 +260,15 @@
+  #endif
+  #endif /* USE_PAM */
+  
+@@ -32,7 +45,7 @@
+  	signal(SIGINT, SIG_DFL);
+  	signal(SIGQUIT, SIG_DFL);
+  	signal(SIGTERM, SIG_DFL);
+-@@ -302,7 +312,7 @@
++@@ -302,7 +318,7 @@
+  
+  	getstr(user, sizeof(user), "username too long\n");
+  	getstr(pass, sizeof(pass), "password too long\n");
+@@ -43,7 +56,20 @@
+  	       pam_end(pamh, pam_error); exit(1); \
+ --- netkit-rsh-0.17/rshd/rshd.c
+ +++ netkit-rsh-0.17/rshd/rshd.c
+-@@ -337,7 +337,8 @@
++@@ -92,6 +92,12 @@ static pam_handle_t *pamh;
++ 
++ #define	OPTIONS	"ahlLnD"
++ 
+++#ifndef _POSIX_ARG_MAX
+++# if defined(__FreeBSD__) || defined(__DragonFly__)
+++#  include <limits.h>
+++# endif
+++#endif
+++
++ static int keepalive = 1;
++ static int check_all = 0;
++ static int paranoid = 0;
++@@ -337,7 +343,8 @@
+  static void
+  doit(struct sockaddr_in *fromp)
+  {
+@@ -53,7 +79,7 @@
+  	const char *theshell, *shellname;
+  	char locuser[16], remuser[16];
+  	struct passwd *pwd;
+-@@ -346,6 +347,15 @@
++@@ -346,6 +353,15 @@
+  	u_short port;
+  	int pv[2], pid, ifd;
+  
+@@ -69,7 +95,7 @@
+  	signal(SIGINT, SIG_DFL);
+  	signal(SIGQUIT, SIG_DFL);
+  	signal(SIGTERM, SIG_DFL);
+-@@ -382,7 +392,7 @@
++@@ -382,7 +398,7 @@
+  
+  	getstr(remuser, sizeof(remuser), "remuser");
+  	getstr(locuser, sizeof(locuser), "locuser");

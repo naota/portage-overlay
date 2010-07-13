@@ -24,6 +24,9 @@ DEPEND="${RDEPEND}
 src_unpack() {
 	unpack ${A}
 
+	cd "${WORKDIR}"/patch
+	epatch "${FILESDIR}"/230_all_MAX_ARG.patch.patch
+
 	cd "${S}"
 	rm -rf rexec
 	mv ../rexec rexec
