@@ -19,8 +19,7 @@ IUSE=""
 S="${WORKDIR}/${PN}-${MY_PV}"
 
 src_prepare() {
-	epatch "${FILESDIR}"/${P}-check-malloc.patch
-	eautoreconf
+	epatch "${FILESDIR}"/${P}-remove-malloc-include.patch
 }
 
 src_install() {

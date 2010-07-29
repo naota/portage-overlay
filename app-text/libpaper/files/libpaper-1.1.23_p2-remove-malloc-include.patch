@@ -1,0 +1,10 @@
+--- a/lib/paper.c
++++ b/lib/paper.c
+@@ -14,7 +14,7 @@
+ #include <sys/stat.h>
+ 
+ #include <stdio.h>
+-#include <malloc.h>
+ #include <string.h>
+ #include <ctype.h>
+ 
