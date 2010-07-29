@@ -4,7 +4,7 @@
 
 EAPI=3
 
-inherit elisp-common
+inherit eutils elisp-common
 
 DESCRIPTION="The most intelligent development tools for C/C++"
 HOMEPAGE="http://cx4a.org/software/gccsense/index.html"
@@ -22,6 +22,10 @@ RDEPEND="=dev-util/gcc-code-assist-${PV}
 	dev-ruby/sqlite3-ruby"
 
 SITEFILE=50${PN}-gentoo.el
+
+src_prepare() {
+	epatch "${FILESDIR}"/${P}-elisp.patch
+}
 
 src_compile() {
 	if use emacs ; then
