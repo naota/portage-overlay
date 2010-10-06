@@ -1,9 +1,8 @@
 inherit toolchain-funcs
 
-MY_P="${P/_p/-}"
 DESCRIPTION="UT-VPN"
 HOMEPAGE=""
-SRC_URI="http://utvpn.tsukuba.ac.jp/files/beta/utvpn-src-unix-v100-7092-beta-2010.06.25.tar.gz"
+SRC_URI="http://utvpn.tsukuba.ac.jp/files/utvpn/v${PV}-7101-public-2010.06.27/Source%20Code%20(Win32%20and%20Unix)/utvpn-src-unix-v101-7101-public-2010.06.27.tar.gz"
 
 LICENSE="GPL-2"
 SLOT="0"
