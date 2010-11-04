@@ -32,5 +32,6 @@ src_compile() {
 
 src_install() {
 	(cd lisp; einstall) || die "einstall failed"
+	(cd mazegaki; einstall DESTDIR="${D}") || die "einstall failed"
 	(cd etc; einstall DESTDIR="${D}") || die "einstall failed"
 }
