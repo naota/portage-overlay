@@ -19,6 +19,11 @@ IUSE="nocxx threads"
 DEPEND="dev-libs/libatomic_ops"
 RDEPEND="${DEPEND}"
 
+src_unpack() {
+	unpack "${A}"
+	chmod a+x "${S}"/install-sh
+}
+
 src_compile() {
 	local myconf="--with-libatomic-ops=yes"
 
