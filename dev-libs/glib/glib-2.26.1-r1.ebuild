@@ -17,7 +17,10 @@ IUSE="debug doc fam +introspection selinux +static-libs test xattr"
 RDEPEND="virtual/libiconv
 	sys-libs/zlib
 	xattr? ( sys-apps/attr )
-	fam? ( virtual/fam )"
+	fam? ( virtual/fam )
+	debug? (
+		kernel_linux? ( dev-util/systemtap )
+	)"
 DEPEND="${RDEPEND}
 	>=dev-util/pkgconfig-0.16
 	>=sys-devel/gettext-0.11
@@ -112,6 +115,12 @@ src_configure() {
 	# -- compnerd (3/27/06)
 	# disable-visibility needed for reference debug, bug #274647
 	use debug && myconf="--enable-debug --disable-visibility"
+
+	if use kernel_linux; then
+		myconf="${myconf} $(use_enable debug systemtap)"
+	elif use kernel_FreeBSD; then
+		myconf="${myconf} $(use_enable debug dtrace)"
+	fi
 
 	# Always use internal libpcre, bug #254659
 	econf ${myconf} \
