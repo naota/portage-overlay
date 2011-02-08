@@ -34,6 +34,8 @@ src_prepare() {
 	epatch "${FILESDIR}"/${PN}-5.45-gfbsd.patch
 	epatch "${FILESDIR}"/${PN}-5.44.1.15-ldflags.patch
 	epatch "${FILESDIR}"/${PN}-5.45-headers.patch #337943
+	epatch "${FILESDIR}"/${PN}-5.45-pty_termios.patch
+	epatch "${FILESDIR}"/${PN}-5.45-lib-version.patch
 	sed -i 's:ifdef HAVE_SYS_WAIT_H:ifndef NO_SYS_WAIT_H:' *.c
 
 	eautoconf
