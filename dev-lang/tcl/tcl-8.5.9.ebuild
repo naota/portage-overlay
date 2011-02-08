@@ -37,6 +37,8 @@ src_prepare() {
 	# Bug 125971
 	epatch "${FILESDIR}"/${PN}-8.5_alpha6-tclm4-soname.patch
 
+	epatch "${FILESDIR}"/${PN}-8.5.9-freebsd.patch
+
 	cd "${S}"/unix
 	eautoreconf
 }
