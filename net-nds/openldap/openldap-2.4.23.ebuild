@@ -237,6 +237,8 @@ src_prepare() {
 	# bug #233633
 	epatch "${FILESDIR}"/${PN}-2.4.17-fix-lmpasswd-gnutls-symbols.patch
 
+	epatch "${FILESDIR}"/${PN}-2.4.23-elif-defined.patch
+
 	cd "${S}"/build
 	einfo "Making sure upstream build strip does not do stripping too early"
 	sed -i.orig \
