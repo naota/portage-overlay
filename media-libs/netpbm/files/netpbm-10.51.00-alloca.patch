@@ -1,0 +1,14 @@
+diff --git a/editor/pampaintspill.c b/editor/pampaintspill.c
+index b5f9652..7f61619 100644
+--- a/editor/pampaintspill.c
++++ b/editor/pampaintspill.c
+@@ -42,7 +42,9 @@
+ #include <stdio.h>
+ #include <string.h>
+ #include <math.h>
++#ifdef __linux__
+ #include <alloca.h>
++#endif
+ #include <time.h>
+ 
+ #include "mallocvar.h"
