@@ -37,14 +37,18 @@ src_prepare() {
 }
 
 src_configure() {
-	econf \
+	econf HOST=${CHOST} \
 		--disable-dependency-tracking \
 		$(use_enable static-libs static) \
 		$(use_enable debug)
 }
 
+src_compile() {
+	emake HOST=${CHOST} || die
+}
+
 src_install() {
-	emake DESTDIR="${D}" install || die
+	emake DESTDIR="${D}" HOST=${CHOST} install || die
 	dodoc ChangeLog* README
 	find "${D}" -name '*.la' -exec rm -f {} +
 }
