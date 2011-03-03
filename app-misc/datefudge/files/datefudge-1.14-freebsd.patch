@@ -1,0 +1,44 @@
+diff --git a/Makefile b/Makefile
+index c6a9ee1..b6fe826 100644
+--- a/Makefile
++++ b/Makefile
+@@ -17,7 +17,7 @@ datefudge: datefudge.sh
+ 	sed -e 's,@VERSION@,$(VERSION),g' < $< > $@
+ 
+ datefudge.so: datefudge.o
+-	$(CC) $(LDFLAGS) -o $@ -shared $< -ldl -lc
++	$(CC) $(LDFLAGS) -o $@ -shared $< -lc
+ 
+ datefudge.o: datefudge.c
+ 	$(CC) -D_REENTRANT $(CFLAGS) -fpic -c -o $@ $<
+diff --git a/datefudge.c b/datefudge.c
+index 936fce1..698444f 100644
+--- a/datefudge.c
++++ b/datefudge.c
+@@ -14,7 +14,6 @@
+ #include <stdlib.h>
+ #include <dlfcn.h>
+ #include <assert.h>
+-#include <features.h>
+ #include <unistd.h>
+ #include <time.h>
+ #include <sys/time.h>
+diff --git a/Makefile b/Makefile
+index b6fe826..f7e9ad5 100644
+--- a/Makefile
++++ b/Makefile
+@@ -7,11 +7,11 @@ compile all: datefudge datefudge.so
+ 
+ install: datefudge datefudge.so datefudge.1
+ 	install -d $(DESTDIR)/usr/lib/datefudge/
+-	$(INSTALL_PROGRAM) -o root -g root -m 644 datefudge.so $(DESTDIR)/usr/lib/datefudge/datefudge.so
++	$(INSTALL_PROGRAM) -o root -g wheel -m 644 datefudge.so $(DESTDIR)/usr/lib/datefudge/datefudge.so
+ 	install -d $(DESTDIR)/usr/bin/
+-	$(INSTALL_PROGRAM) -o root -g root -m 755 datefudge $(DESTDIR)/usr/bin
++	$(INSTALL_PROGRAM) -o root -g wheel -m 755 datefudge $(DESTDIR)/usr/bin
+ 	install -d $(DESTDIR)/usr/share/man/man1
+-	install -o root -g root -m 644 datefudge.1 $(DESTDIR)/usr/share/man/man1
++	install -o root -g wheel -m 644 datefudge.1 $(DESTDIR)/usr/share/man/man1
+ 
+ datefudge: datefudge.sh
+ 	sed -e 's,@VERSION@,$(VERSION),g' < $< > $@

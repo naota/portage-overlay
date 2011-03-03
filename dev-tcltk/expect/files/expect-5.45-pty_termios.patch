@@ -1,0 +1,19 @@
+diff --git a/pty_termios.c b/pty_termios.c
+index e832b2f..74f9b8e 100644
+--- a/pty_termios.c
++++ b/pty_termios.c
+@@ -10,7 +10,13 @@ would appreciate credit if you use this file or parts of it.
+ #include <stdio.h>
+ #include <signal.h>
+ #include <string.h>
+-#include <pty.h>
++#ifdef __Linux__
++# include <pty.h>
++#endif
++#ifdef __FreeBSD__
++# include <sys/types.h>
++# include <libutil.h>
++#endif
+ 
+ #if defined(SIGCLD) && !defined(SIGCHLD)
+ #define SIGCHLD SIGCLD
