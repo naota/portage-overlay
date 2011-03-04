@@ -31,7 +31,6 @@ pkg_setup() {
 		eerror "        < > MacBook Pro Nvidia Backlight Driver"
 		die "BACKLIGHT_MBP_NVIDIA enabled"
 	fi
-	linux-mod_pkg_setup
 	BUILD_PARAMS="-C ${KV_DIR} M=${S}"
 	BUILD_TARGETS="mbp_nvidia_bl.ko"
 }
