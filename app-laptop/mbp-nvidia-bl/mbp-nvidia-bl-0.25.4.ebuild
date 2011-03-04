@@ -20,6 +20,18 @@ MODULE_NAMES="mbp_nvidia_bl(kernel/drivers)"
 pkg_setup() {
 	kernel_is -lt 2 6 29 && die "kernel 2.6.29 or higher is required"
 	linux-mod_pkg_setup
+	if linux_chkconfig_present BACKLIGHT_MBP_NVIDIA; then
+		eerror "You've enabled BACKLIGHT_MBP_NVIDIA."
+		eerror "It may collide with this package's module."
+		eerror "Please disable it."
+		eerror
+		eerror "  Device Drivers  --->"
+		eerror "    Graphics support  --->"
+		eerror "      Backlight & LCD device support  --->"
+		eerror "        < > MacBook Pro Nvidia Backlight Driver"
+		die "BACKLIGHT_MBP_NVIDIA enabled"
+	fi
+	linux-mod_pkg_setup
 	BUILD_PARAMS="-C ${KV_DIR} M=${S}"
 	BUILD_TARGETS="mbp_nvidia_bl.ko"
 }
