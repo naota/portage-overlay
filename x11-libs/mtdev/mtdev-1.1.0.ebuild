@@ -15,5 +15,5 @@ IUSE=""
 RESTRICT="test"
 
 src_install() {
-	einstall || die "emake install failed"
+	emake DESTDIR="${D}" install || die "emake install failed"
 }
