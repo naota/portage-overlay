@@ -29,10 +29,10 @@ src_install() {
 
 	local dir=/usr/libexec/${PN}
 	insinto ${dir}
-	doins grouping.py ostime.py piechart.py pylibcgroup.py scheduledialog.py \
-		task.py
+	doins cgroups.py grouping.py ostime.py piechart.py pylibcgroup.py \
+		scheduledialog.py task.py
 	exeinto ${dir}
-	doexe cgroups.py
+	doexe cgfreak.py
 
-	dosym ${dir}/cgroups.py /usr/bin/cgroups.py
+	dosym ${dir}/cgfreak.py /usr/bin/cgfreak.py
 }
