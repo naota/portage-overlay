@@ -1,0 +1,6 @@
+#!/bin/bash
+
+target=$1
+
+mkdir -p $target
+cp -a /usr/portage/$1/* $target || rm -r $target && (cd $target; git add .; git commit -m "import $target")
